@@ -56,7 +56,7 @@ int main()
     Engineer e(1002,"sanjida",35000,3.0,1500);
     
     cout<<"Manager total salary:"<<m.calculateSalary()<<endl;
-     cout<<"Engineer total salary:"<<e.calculateSalary()<<endl;
+    cout<<"Engineer total salary:"<<e.calculateSalary()<<endl;
     return 0;
 }
 

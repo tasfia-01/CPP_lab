@@ -23,7 +23,7 @@ public:
 
 int main()
 {
-    Car car(2012, 55, "BMW", "SKYSCRAPPER"),
+    Car car(2013, 50, "ABC", "XYZ"),
         car2(2015, 45, "Audi", "R8");
 
     car.get_car();

@@ -16,7 +16,7 @@ public:
 int main()
 {
     Car car;
-    car.set_car(2012, 55, "BMW", "SKYSCRAPPER");
+    car.set_car(2013, 50, "ABC", "XYZ");
     car.get_car();
     return 0;
 }
