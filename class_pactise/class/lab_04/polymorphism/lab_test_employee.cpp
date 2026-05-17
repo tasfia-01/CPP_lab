@@ -6,14 +6,15 @@ class Employee{
     virtual double calculateBonus()=0;
     virtual double calculateTax()=0;
     virtual double netSalary()=0;
+    virtual ~Employee(){};
 };
 class FulltimeEmployee:public Employee{
 
     private:
     double salary;
-    double bonus;
+    
     public:
-    FulltimeEmployee(double s,double b):salary(s),bonus(b){}
+    FulltimeEmployee(double s):salary(s){}
     
    double calculateSalary() override
     {
@@ -21,15 +22,15 @@ class FulltimeEmployee:public Employee{
     }
     double calculateBonus() override
     {
-        return bonus;
+        return salary*0.5;
     }
     double calculateTax() override
     {
-        return 0.10*(salary+bonus);
+        return 0.10*(calculateSalary()+calculateBonus());
     }
     double netSalary() override
     {
-        return (salary+bonus)-calculateTax();
+        return (calculateSalary()+calculateBonus())-calculateTax();
     }
 
 };
@@ -48,7 +49,7 @@ class ParttimeEmployee:public Employee{
     }
     double calculateBonus() override
     {
-        return (hours/20)*0.25*calculateSalary();
+        return (int)(hours/20)*0.25*calculateSalary();
     }
     double calculateTax() override
     {
@@ -88,24 +89,30 @@ class ContractualEmployee:public Employee{
 };
 void employeeInfo(Employee *e)
 {
-    
+    cout<<"total salary:"<<e->calculateSalary()<<endl;
+    cout<<"total bonus:"<<e->calculateBonus()<<endl;
+    cout<<"total tax:"<<e->calculateTax()<<endl;
+    cout<<"Net salary:"<<e->netSalary()<<endl;
 }
 int main()
 {
     Employee *e;
 
-    FulltimeEmployee f(3500,100);
-    ParttimeEmployee p(3.00,2300);
-    ContractualEmployee c(1000,3);
+    FulltimeEmployee f(50000);
+    ParttimeEmployee p(20,2500);
+    ContractualEmployee c(2000,5);
 
     e=&f;
-    e->calculateSalary();
+    cout<<"Fulltime Employee"<<endl;
+    employeeInfo(e);
 
     e=&p;
-    e->calculateSalary();
+    cout<<"Parttime Employee"<<endl;
+    employeeInfo(e);
 
     e=&c;
-    e->calculateSalary();
+    cout<<"contractual Employee"<<endl;
+    employeeInfo(e);
 
 
 
